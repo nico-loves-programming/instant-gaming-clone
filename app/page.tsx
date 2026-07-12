@@ -6,7 +6,7 @@ export default async function Home() {
     
     return (
         <div>
-            <h1>DB-Test</h1>
+            <h1>DB-Test2</h1>
             {error && <pre>Fehler: {JSON.stringify(error, null, 2)}</pre>}
             {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
         </div>
