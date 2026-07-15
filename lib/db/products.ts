@@ -5,7 +5,7 @@ export async function getProducts(): Promise<Product[]> {
    const supabase = await createClient();
    
    const { data, error } = await supabase
-       .from('products')
+       .from('product')
        .select('*')
     
    if (error) {
