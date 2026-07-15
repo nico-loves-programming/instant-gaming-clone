@@ -1,4 +1,5 @@
 import {createClient} from "@/lib/db/server";
+import {Card} from "@/components/ui/Card";
 
 export default async function Home() {
     const supabase = await createClient()

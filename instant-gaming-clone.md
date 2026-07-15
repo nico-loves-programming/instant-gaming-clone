@@ -19,15 +19,15 @@
 **Phase 0 – Setup**
 - [x]  Next.js-Projekt aufsetzen (`create-next-app`, TypeScript + Tailwind direkt mit aktivieren)
 - [x]  Supabase-Projekt anlegen, DB-Connection testen
-- [ ]  Git-Repo + erster Commit
+- [x]  Git-Repo + erster Commit
 
 **Phase 1 – Datenmodell**
-- [ ]  Tabellen designen: `products`, `categories`, `users`, `orders`, `order_items`
-- [ ]  Schema in Supabase/Drizzle anlegen
-- [ ]  Seed-Daten (Fake-Produkte) reinschreiben, damit du was zum Testen hast
+- [x]  Tabellen designen: `products`, `categories`, `users`, `orders`, `order_items`
+- [x]  Schema in Supabase/Drizzle anlegen
+- [x]  Seed-Daten (Fake-Produkte) reinschreiben, damit du was zum Testen hast
 
 **Phase 2 – Produktkatalog (Read-Only)**
-- [ ]  API-Funktion: alle Produkte holen
+- [x]  API-Funktion: alle Produkte holen
 - [ ]  `ProductCard`-Komponente
 - [ ]  `ProductGrid`-Komponente
 - [ ]  Startseite baut daraus den Katalog
