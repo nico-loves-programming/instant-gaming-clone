@@ -6,11 +6,14 @@ export async function getProducts(): Promise<Product[]> {
    
    const { data, error } = await supabase
        .from('product')
-       .select('*')
+       .select('*, product_category(category(*))')
     
    if (error) {
        throw new Error(`Fehler beim Laden der Produkte: ${error.message}`)
    }
    
-   return data
+   return data.map((product) => ({
+       ...product,
+       categories: product.product_category.map((pc: any) => pc.category),
+   }))
 }
