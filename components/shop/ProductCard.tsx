@@ -1,11 +1,19 @@
-﻿import {Product} from "@/types/product";
+﻿"use client"
+
+import {Product} from "@/types/product";
 import {Card} from "@/components/ui/Card";
+import {addProductToCart} from "@/actions/card";
 
 interface ProductCardProps {
     product: Product
 }
 
 export function ProductCard({product}: ProductCardProps) {
+    
+    async function handleAdd(){
+        await addProductToCart(product.id)
+    }
+    
     return(
         <Card>
             <div className="flex justify-between pb-2">
@@ -17,6 +25,7 @@ export function ProductCard({product}: ProductCardProps) {
                 alt={product.name}
                 className="w-full h-80 object-cover transition-transform duration-300 hover:scale-105"
             />
+            <button onClick={handleAdd}>In den Warenkorb</button>
         </Card>
     )
 }
