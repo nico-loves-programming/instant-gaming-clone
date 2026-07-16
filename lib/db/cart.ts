@@ -73,6 +73,50 @@ export async function addToCart(productId:string){
     }
 }
 
+export async function removeFromCart(productId: string) {
+    const supabase = await createClient()
+
+    const cart = await getCart()
+
+    if (!cart) {
+        throw new Error("Kein Warenkorb gefunden")
+    }
+
+    const { data: existing, error } = await supabase
+        .from("cart_item")
+        .select("*")
+        .eq("cart_id", cart.id)
+        .eq("product_id", productId)
+        .single()
+
+    if (error || !existing) {
+        throw new Error("Produkt befindet sich nicht im Warenkorb")
+    }
+
+    if (existing.quantity > 1) {
+        const { error } = await supabase
+            .from("cart_item")
+            .update({
+                quantity: existing.quantity - 1
+            })
+            .eq("id", existing.id)
+
+        if (error) {
+            throw error
+        }
+    } else {
+        const { error } = await supabase
+            .from("cart_item")
+            .delete()
+            .eq("id", existing.id)
+
+        if (error) {
+            throw error
+        }
+    }
+}
+
+
 export async function getCartItems(){
 
     const supabase = await createClient()

@@ -18,7 +18,6 @@ export async function Navbar() {
                     </>
                 ) : (
                     <>
-                        <Link href="/cart">Warenkorb</Link>
                         <Link href="/login">Login</Link>
                         <Link href="/register">Registrieren</Link>
                     </>
