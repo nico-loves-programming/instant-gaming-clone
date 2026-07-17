@@ -4,6 +4,8 @@ import { useState, useTransition } from "react"
 import { Product } from "@/types/product";
 import { Card } from "@/components/ui/Card";
 import { addProductToCart } from "@/actions/card";
+import { useRouter } from "next/navigation"
+
 
 interface ProductCardProps {
     product: Product
@@ -12,6 +14,7 @@ interface ProductCardProps {
 export function ProductCard({product}: ProductCardProps) {
     const [isPending, startTransition] = useTransition()
     const [added, setAdded] = useState(false)
+    const router = useRouter()
 
     function handleAdd() {
         startTransition(async () => {
@@ -35,6 +38,7 @@ export function ProductCard({product}: ProductCardProps) {
                 src={product.image_url ?? undefined}
                 alt={product.name}
                 className="w-full h-80 object-cover transition-transform duration-300 hover:scale-105"
+                onClick={() => router.push(`/productdetails/${product.id}`)}            
             />
             <button
                 onClick={handleAdd}

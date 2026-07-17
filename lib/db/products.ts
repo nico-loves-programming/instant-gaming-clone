@@ -17,3 +17,20 @@ export async function getProducts(): Promise<Product[]> {
        categories: product.product_category.map((pc: any) => pc.category),
    }))
 }
+
+export async function getProductById(id: string) {
+    const supabase = await createClient()
+
+    const { data, error } = await supabase
+        .from("product")
+        .select("*")
+        .eq("id", id)
+        .single()
+    
+    if (error) {
+        console.error(error)
+        return null
+    }
+
+    return data
+}

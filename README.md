@@ -18,10 +18,10 @@ Dieses Projekt entstand, um moderne Full-Stack-Webentwicklung praktisch zu üben
 ## Features
 
 - [x] Datenbankschema (Produkte, Kategorien, Nutzer, Bestellungen)
-- [ ] Produktkatalog mit Such- und Filterfunktion
+- [X] Produktkatalog mit Such- und Filterfunktion
 - [ ] Produktdetailseiten
-- [ ] Nutzer-Authentifizierung
-- [ ] Warenkorb
+- [x] Nutzer-Authentifizierung
+- [x] Warenkorb
 - [ ] Checkout mit Stripe
 - [ ] Admin-Bereich für Produktverwaltung
 
