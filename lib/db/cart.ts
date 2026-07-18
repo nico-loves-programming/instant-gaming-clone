@@ -116,35 +116,83 @@ export async function removeFromCart(productId: string) {
     }
 }
 
-
 export async function getCartItems(){
 
     const supabase = await createClient()
 
     const cart = await getCart()
 
-    if(!cart)
-        return []
+    if(!cart) return []
 
-    const {
-        data,
-        error
-    } = await supabase
+    const { data, error} = await supabase
         .from("cart_item")
         .select(`
             id,
             quantity,
-            product(
-                *
-            )
+            created_at,
+            product(*)
         `)
-        .eq(
-            "cart_id",
-            cart.id
-        )
+        .eq("cart_id", cart.id)
+        .order("created_at", {ascending: true})
 
-    if(error)
-        throw error
+    if(error) throw error
     
     return data
+}
+
+export async function increaseQuantity(productId: string) {
+
+    const supabase = await createClient()
+
+    const cart = await getCart()
+
+    const { data: item, error } = await supabase
+        .from("cart_item")
+        .select("*")
+        .eq("cart_id", cart.id)
+        .eq("product_id", productId)
+        .single()
+
+    if (error) throw error
+
+    await supabase
+        .from("cart_item")
+        .update({
+            quantity: item.quantity + 1
+        })
+        .eq("id", item.id)
+}
+
+export async function decreaseQuantity(productId: string) {
+
+    const supabase = await createClient()
+
+    const cart = await getCart()
+
+    const { data: item, error } = await supabase
+        .from("cart_item")
+        .select("*")
+        .eq("cart_id", cart.id)
+        .eq("product_id", productId)
+        .single()
+
+    if (error) throw error
+
+    if (item.quantity <= 1) {
+
+        await supabase
+            .from("cart_item")
+            .delete()
+            .eq("id", item.id)
+
+    } else {
+
+        await supabase
+            .from("cart_item")
+            .update({
+                quantity: item.quantity - 1
+            })
+            .eq("id", item.id)
+
+    }
 }

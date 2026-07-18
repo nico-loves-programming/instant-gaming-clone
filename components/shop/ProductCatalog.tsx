@@ -13,15 +13,21 @@ interface ProductCatalogProps {
 export function ProductCatalog({products, categories} : ProductCatalogProps) {
     const [search, setSearch] = useState("")
     const [categoryId, setCategoryId] = useState("")
-    
+
     const filtered = useMemo(() => {
-        if (!search && !categoryId) return[]
-        
+        if (!search && !categoryId) {
+            return products
+        }
+
         return products.filter((product) => {
-            const matchesSearch = 
-                search === "" || product.name.toLowerCase().includes(search.toLowerCase())
+            const matchesSearch =
+                search === "" ||
+                product.name.toLowerCase().includes(search.toLowerCase())
+
             const matchesCategory =
-                categoryId === "" || product.categories.some((c) => c.id === categoryId)
+                categoryId === "" ||
+                product.categories.some((c) => c.id === categoryId)
+
             return matchesSearch && matchesCategory
         })
     }, [search, categoryId, products])

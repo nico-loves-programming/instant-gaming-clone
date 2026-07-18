@@ -8,4 +8,9 @@ export interface Product {
     image_url: string | null;
     created_at: string;
     categories: Category[];
+    platform: {
+        id: string
+        name: string
+        slug: string
+    }
 }
