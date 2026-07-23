@@ -29,7 +29,7 @@ export function AddToCartButton({ productId }: AddToCartButtonProps) {
         <button
             onClick={handleAdd}
             disabled={isPending}
-            className="w-full bg-black text-white rounded px-3 py-2 mt-2 disabled:opacity-50"
+            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white rounded px-3 py-2 mt-2 transition disabled:opacity-50"
         >
             {isPending ? "Wird hinzugefügt..." : added ? "Hinzugefügt ✓" : "In den Warenkorb"}
         </button>

@@ -45,7 +45,7 @@ export function ProductInCard({product, quantity}: ProductInCartProps) {
                             {product.name}
                         </h3>
 
-                        <p className="text-gray-700 mt-1">
+                        <p className="text-white mt-1">
                             {(product.price_cents / 100).toFixed(2).replace(".", ",")} €
                         </p>
 

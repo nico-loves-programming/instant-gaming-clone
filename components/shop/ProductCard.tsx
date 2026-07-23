@@ -30,7 +30,7 @@ export function ProductCard({product}: ProductCardProps) {
 
     return(
         <Card>
-            <div className="flex justify-between pb-2">
+            <div className="flex justify-between pb-2 text-white">
                 {product.name}
                 <p>Preis: {(product.price_cents / 100).toFixed(2).replace('.',',')} €</p>
             </div>

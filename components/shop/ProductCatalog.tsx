@@ -40,12 +40,12 @@ export function ProductCatalog({products, categories} : ProductCatalogProps) {
                     placeholder="Spiel suchen..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="border rounded px-3 py-2 flex-1"
+                    className="border border-zinc-700 bg-zinc-900 text-white placeholder:text-zinc-500 rounded px-3 py-2 flex-1"
                 />
                 <select
                     value={categoryId}
                     onChange={(e) => setCategoryId(e.target.value)}
-                    className="border rounded px-3 py-2"
+                    className="border border-zinc-700 bg-zinc-900 text-white rounded px-3 py-2"
                 >
                     <option value="">Alle Kategorien</option>
                     {categories.map((category) => (
@@ -58,7 +58,7 @@ export function ProductCatalog({products, categories} : ProductCatalogProps) {
             {filtered.length > 0 ? (
                 <ProductGrid products={filtered} />
             ) : (
-                <p className="text-gray-500">Suche nach einem Spiel oder wähle eine Kategorie.</p>
+                <p className="text-zinc-400">Suche nach einem Spiel oder wähle eine Kategorie.</p>
             )}
         </div>
     )

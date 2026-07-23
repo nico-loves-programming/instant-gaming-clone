@@ -38,7 +38,7 @@ export default async function ProductDetails({params}: ProductDetailsProps) {
                             .toFixed(2)
                             .replace(".", ",")} €
                     </p>
-                    <p className="text-gray-700 leading-relaxed mb-6">
+                    <p className="text-white leading-relaxed mb-6">
                         {product.description}
                     </p>
                     <AddToCartButton productId={product.id} />
