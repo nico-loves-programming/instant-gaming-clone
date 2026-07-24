@@ -34,6 +34,7 @@ export function ProductCatalog({products, categories} : ProductCatalogProps) {
     
     return (
         <div>
+            {/*
             <div className="flex gap-4 mb-6">
                 <input
                     type="text"
@@ -60,6 +61,7 @@ export function ProductCatalog({products, categories} : ProductCatalogProps) {
             ) : (
                 <p className="text-zinc-400">Suche nach einem Spiel oder wähle eine Kategorie.</p>
             )}
+            */}
         </div>
     )
 }

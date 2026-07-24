@@ -30,23 +30,18 @@ export function ProductCard({product}: ProductCardProps) {
 
     return(
         <Card>
-            <div className="flex justify-between pb-2 text-white">
-                {product.name}
-                <p>Preis: {(product.price_cents / 100).toFixed(2).replace('.',',')} €</p>
+            <div>
+                <img
+                    src={product.image_url ?? undefined}
+                    alt={product.name}
+                    className="w-full object-cover transition-transform duration-300 hover:scale-105"
+                    onClick={() => router.push(`/productdetails/${product.id}`)}
+                />
+                <div className="flex justify-between pt-4 pb-5 text-xl text-white">
+                    {product.name}
+                    <p>{(product.price_cents / 100).toFixed(2).replace('.',',')} €</p>
+                </div>
             </div>
-            <img
-                src={product.image_url ?? undefined}
-                alt={product.name}
-                className="w-full h-80 object-cover transition-transform duration-300 hover:scale-105"
-                onClick={() => router.push(`/productdetails/${product.id}`)}            
-            />
-            <button
-                onClick={handleAdd}
-                disabled={isPending}
-                className="w-full bg-black text-white rounded px-3 py-2 mt-2 disabled:opacity-50"
-            >
-                {isPending ? "Wird hinzugefügt..." : added ? "Hinzugefügt ✓" : "In den Warenkorb"}
-            </button>
         </Card>
     )
 }
