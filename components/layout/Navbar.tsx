@@ -12,7 +12,7 @@ export async function Navbar() {
     const { data:{ user } } = await supabase.auth.getUser()
     
     return (
-        <nav className="sticky top-0 z-50 flex w-full h-24 items-center justify-between p-4 bg-black text-white">
+        <nav className="sticky top-0 z-50 flex w-full h-24 items-center justify-between p-4 bg-black ">
             
             <div className="h-16 w-40 flex items-center">
                 <Link href="/">
@@ -39,7 +39,7 @@ export async function Navbar() {
                     />
                 </Link>
 
-                <Link href="/profile" className="mr-5">
+                <Link href="/login" className="mr-5">
                     <Image
                         src={user_logo}
                         alt="Profil"

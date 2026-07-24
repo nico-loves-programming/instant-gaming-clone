@@ -82,15 +82,13 @@ export function NavbarCenter() {
                                 height={30}
                             />Nintendo
                         </Link>
-                        
+
                         <motion.button
                             onClick={() => setSearchOpen(true)}
-                            whileHover={{
-                                scale: 1.15
-                            }}
-                            transition={{
-                                duration: 0.2
-                            }}>
+                            whileHover={{ scale: 1.15 }}
+                            transition={{ duration: 0.2 }}
+                            className="bg-gradient-to-br from-green-400 to-green-700 rounded-full p-2.5 flex items-center justify-center"
+                        >
                             <Image
                                 src={lens_logo}
                                 alt="Search"

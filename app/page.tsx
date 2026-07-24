@@ -12,6 +12,8 @@ import {Bestseller} from "@/components/bestseller/Bestseller";
 import {getCategoriesWithImage} from "@/lib/db/categories";
 import {CategoryGrid} from "@/components/categorygrid/CategoryGrid";
 import {FAQ} from "@/components/faq/FAQ";
+import {Navbar} from "@/components/layout/Navbar";
+import {Footer} from "@/components/footer/Footer";
 
 export default async function Home() {
     const products = await getProducts()
@@ -20,6 +22,7 @@ export default async function Home() {
 
     return (
         <>
+            <Navbar />
             <Hero />
             <TrendingGames products={products.slice(0, 9)} />
             <TrustBar></TrustBar>
@@ -30,6 +33,7 @@ export default async function Home() {
             <Bestseller products={products.slice(28,37)} />
             <CategoryGrid categories={categoriesWithImage} />
             <FAQ></FAQ>
+            <Footer />
         </>
     )
 }
