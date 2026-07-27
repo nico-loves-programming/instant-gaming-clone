@@ -123,3 +123,61 @@ export async function getPreOrderGamesWithAmount(amount: number) {
 
     return data
 }
+
+export async function getAllBestsellerProducts() {
+    const supabase = await createClient()
+
+    const {data, error} = await supabase
+        .from("product")
+        .select("*")
+        .contains("homepage_tags", ["bestseller"])
+
+    if(error) {
+        console.error(error)
+        return []
+    }
+
+    return data
+}
+
+export async function getBestSellerProductsWithAmount(amount: number) {
+    const supabase = await createClient()
+
+    const {data, error} = await supabase
+        .from("product")
+        .select("*")
+        .contains("homepage_tags", ["bestseller"])
+        .limit(amount)
+
+    if(error) {
+        console.error(error)
+        return []
+    }
+
+    return data
+}
+
+export async function getProductsByPlatformSlug(slug: string): Promise<Product[]> {
+    const supabase = await createClient()
+
+    const { data, error } = await supabase
+        .from("product")
+        .select(`
+            *,
+            platform!inner(
+                id,
+                name,
+                slug
+            )
+        `)
+        .eq("platform.slug", slug)
+
+
+    if (error) {
+        console.error(error)
+        return []
+    }
+
+
+    return data
+}

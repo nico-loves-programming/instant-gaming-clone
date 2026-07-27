@@ -2,12 +2,16 @@
 import {ProductCard} from "@/components/shop/ProductCard";
 import type { Product } from "@/types/product"
 import { ChevronRight } from "lucide-react";
+import {getBestSellerProductsWithAmount} from "@/lib/db/products";
 
 interface BestsellerProps {
     products: Product[]
 }
 
-export function Bestseller({ products }: BestsellerProps) {
+export async function Bestseller({ products }: BestsellerProps) {
+    
+    const bestsellerProducts = await getBestSellerProductsWithAmount(9)
+    
     return (
         <div className="px-12 py-10">
             <Link href="/bestseller" className="group flex items-center gap-2 w-fit mb-6">
@@ -16,7 +20,7 @@ export function Bestseller({ products }: BestsellerProps) {
             </Link>
 
             <div className="grid grid-cols-3 gap-6">
-                {products.map((product) => (
+                {bestsellerProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </div>

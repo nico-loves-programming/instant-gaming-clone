@@ -64,7 +64,7 @@ export function NavbarCenter() {
                         className="flex gap-6 items-center pt-2">
 
                         <Link
-                            href="/platform/pc"
+                            href="/pc"
                             className="flex items-center gap-2 text-zinc-300 hover:text-white transition font-bold text-2xl border border-transparent hover:border-zinc-700 rounded-lg px-3 py-2"
                         >
                             <Image
@@ -77,7 +77,7 @@ export function NavbarCenter() {
                         </Link>
                         
                         <Link
-                            href="/platform/playstation"
+                            href="/playstation"
                             className="flex items-center gap-2 text-zinc-300 hover:text-white transition font-bold text-2xl border border-transparent hover:border-zinc-700 rounded-lg px-3 py-2"
                         >
                             <Image
@@ -86,11 +86,11 @@ export function NavbarCenter() {
                                 width={30}
                                 height={30}
                             />
-                            Playstation
+                            PlayStation
                         </Link>
 
                         <Link
-                            href="/platform/xbox"
+                            href="/xbox"
                             className="flex items-center gap-2 text-zinc-300 hover:text-white transition font-bold text-2xl border border-transparent hover:border-zinc-700 rounded-lg px-3 py-2"
                         >
                             <Image
@@ -103,7 +103,7 @@ export function NavbarCenter() {
                         </Link>
                         
                         <Link
-                            href="/platform/nintendo"
+                            href="/nintendo"
                             className="flex items-center gap-2 text-zinc-300 hover:text-white transition font-bold text-2xl border border-transparent hover:border-zinc-700 rounded-lg px-3 py-2"
                         >
                             <Image

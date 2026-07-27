@@ -37,7 +37,7 @@ export function ProductCard({product}: ProductCardProps) {
                     className="w-full object-cover transition-transform duration-300 hover:scale-105"
                     onClick={() => router.push(`/productdetails/${product.id}`)}
                 />
-                <div className="flex justify-between pt-4 pb-5 text-xl text-white">
+                <div className="flex justify-between pt-4 pb-5 text-l text-white">
                     {product.name}
                     <p>{(product.price_cents / 100).toFixed(2).replace('.',',')} €</p>
                 </div>
