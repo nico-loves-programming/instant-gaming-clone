@@ -5,8 +5,7 @@ import { Product } from "@/types/product";
 import { Card } from "@/components/ui/Card";
 import { addProductToCart } from "@/actions/card";
 import { useRouter } from "next/navigation"
-import {getPreOrderDate} from "@/lib/db/getPreOrderDate";
-
+import {getReleaseText} from "@/lib/utils/date";
 
 interface PreOrderProductCardProps {
     product: Product
@@ -45,7 +44,7 @@ export function PreOrderProductCard({product}: PreOrderProductCardProps) {
 
                 <div className="flex flex-row text-sm text-blue-400">
                     <p className="border-1">VORBESTELLUNG</p>
-                    <p className="pl-5">{getPreOrderDate()}</p>
+                    <p className="pl-5">{getReleaseText(product.release_date)}</p>
                 </div>
             </div>
         </Card>

@@ -8,6 +8,8 @@ export interface Product {
     image_url: string;
     hero_image_url: string;
     created_at: string;
+    release_date: string;
+    is_preorder: boolean;
     categories: Category[];
     platform: {
         id: string

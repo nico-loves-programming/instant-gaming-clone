@@ -1,6 +1,7 @@
 ﻿import Link from "next/link"
 import {ProductCard} from "@/components/shop/ProductCard";
 import type { Product } from "@/types/product"
+import { ChevronRight } from "lucide-react";
 
 interface BestsellerProps {
     products: Product[]
@@ -9,9 +10,9 @@ interface BestsellerProps {
 export function Bestseller({ products }: BestsellerProps) {
     return (
         <div className="px-12 py-10">
-            <Link href="/" className="flex items-center gap-2 w-fit mb-6">
+            <Link href="/bestseller" className="group flex items-center gap-2 w-fit mb-6">
                 <h2 className="text-white text-2xl font-bold">Bestseller</h2>
-                <span className="text-white text-xl">{">"}</span>
+                <ChevronRight className="text-gray-400 group-hover:text-white transition-colors" />
             </Link>
 
             <div className="grid grid-cols-3 gap-6">

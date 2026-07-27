@@ -52,3 +52,74 @@ export async function getProductById(id: string) {
     return data
 }
 
+export async function getTrendingProductsWithAmount(amount: number) {
+    const supabase = await createClient()
+    
+    const {data, error} = await supabase
+        .from("product")
+        .select("*")
+        .contains("homepage_tags", ["trending"])
+        .limit(amount)
+    
+    if(error) {
+        console.error(error)
+        return []
+    }
+    
+    return data
+}
+
+export async function getAllTrendingGames() {
+    const supabase = await createClient()
+    
+    const {data, error} = await supabase
+        .from("product")
+        .select("*")
+        .contains("homepage_tags", ["trending"])
+    
+    if (error) {
+        console.error(error)
+        return []
+    }
+    
+    return data
+}
+
+export async function getAllPreOrderGames() {
+    const supabase = await createClient()
+    
+    const {data, error} = await supabase
+        .from("product")
+        .select("*")
+        .eq("is_preorder", true)
+        .order("release_date", {
+            ascending: true,
+        })
+    
+    if(error) {
+        console.error(error)
+        return []
+    }
+    
+    return data
+}
+
+export async function getPreOrderGamesWithAmount(amount: number) {
+    const supabase = await createClient()
+
+    const {data, error} = await supabase
+        .from("product")
+        .select("*")
+        .eq("is_preorder", true)
+        .order("release_date", {
+            ascending: true,
+        })
+        .limit(amount)
+
+    if(error) {
+        console.error(error)
+        return []
+    }
+
+    return data
+}
