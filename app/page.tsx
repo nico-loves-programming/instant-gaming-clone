@@ -1,5 +1,4 @@
 import { getProducts } from "@/lib/db/products"
-import { ProductCatalog } from "@/components/shop/ProductCatalog"
 import { getCategories } from "@/lib/db/categories"
 import { Hero } from "@/components/layout/Hero"
 import { TrendingGames } from "@/components/trending/TrendingGames"
@@ -16,14 +15,16 @@ import {Navbar} from "@/components/layout/Navbar";
 import {Footer} from "@/components/footer/Footer";
 
 export default async function Home() {
+    
     const products = await getProducts()
     const categories = await getCategories()
+    const randomProduct = products[Math.floor(Math.random() * products.length)]
     const categoriesWithImage = await getCategoriesWithImage(categories, products)
 
     return (
         <>
             <Navbar />
-            <Hero />
+            <Hero product={randomProduct}/>
             <TrendingGames products={products.slice(0, 9)} />
             <TrustBar></TrustBar>
             <PreOrderGames products={products.slice(10,16)} />

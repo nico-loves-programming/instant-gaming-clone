@@ -9,9 +9,12 @@ import { FcGoogle } from "react-icons/fc"
 import { createClient } from "@/lib/db/client"
 import heroImage from "@/public/images/hero.jpg"
 import logo from "@/public/images/navbar/logo.png"
+import {router} from "next/client";
+import {useRouter} from "next/navigation";
 
 export default function RegisterPage() {
     const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -23,26 +26,60 @@ export default function RegisterPage() {
     const [success, setSuccess] = useState(false)
 
     const isValid = email && password.length >= 8 && firstName && lastName && birthDate && acceptedTerms
+    
+    const router = useRouter()
 
     async function handleRegister(e: React.FormEvent) {
         e.preventDefault()
         setError(null)
 
         const supabase = createClient()
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
             email,
             password,
             options: {
-                data: { first_name: firstName, last_name: lastName, birth_date: birthDate, country },
+                data: {
+                    username,
+                    first_name: firstName,
+                    last_name: lastName,
+                    birth_date: birthDate,
+                    country,
+                },
             },
         })
 
+        console.log(data.user?.user_metadata)
+
         if (error) {
+            console.log(error)
             setError(error.message)
             return
         }
 
-        setSuccess(true)
+        if (!data.user) {
+            setError("Kein User wurde erstellt.")
+            return
+        }
+
+        const { error: profileError } = await supabase
+            .from("profiles")
+            .insert({
+                id: data.user.id,
+                email,
+                username,
+                first_name: firstName,
+                last_name: lastName,
+                birth_date: birthDate,
+                country,
+            })
+
+        if (profileError) {
+            console.log(profileError)
+            setError(profileError.message)
+            return
+        }
+
+        router.push("/")
     }
 
     return (
@@ -97,6 +134,15 @@ export default function RegisterPage() {
                                 required
                             />
 
+                            <input
+                                type="text"
+                                placeholder="Dein Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder:text-neutral-500 outline-none"
+                                required
+                            />
+
                             <div className="relative">
                                 <input
                                     type={showPassword ? "text" : "password"}
@@ -135,8 +181,8 @@ export default function RegisterPage() {
                             />
 
                             <input
-                                type="text"
-                                placeholder="Geburtsdatum (dd/mm/yyyy)"
+                                type="date"
+                                placeholder="Geburtsdatum (yyyy/mm/dd)"
                                 value={birthDate}
                                 onChange={(e) => setBirthDate(e.target.value)}
                                 className="bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-3 text-white placeholder:text-neutral-500 outline-none"

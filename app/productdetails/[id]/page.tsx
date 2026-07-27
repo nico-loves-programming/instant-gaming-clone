@@ -2,6 +2,7 @@
 import { notFound } from "next/navigation"
 import {addProductToCart} from "@/actions/card";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import {Navbar} from "@/components/layout/Navbar";
 
 interface ProductDetailsProps {
     params: Promise<{
@@ -18,32 +19,36 @@ export default async function ProductDetails({params}: ProductDetailsProps) {
     }
     
     return (
-        <div className="max-w-5xl mx-auto p-6">
+        <>
+            <Navbar />
+            
+            <div className="max-w-5xl mx-auto p-6">
 
-            <div className="grid grid-cols-2 gap-8">
-                <div>
-                    <img
-                        src={product.image_url ?? undefined}
-                        alt={product.name}
-                        className="w-full rounded-lg"
-                    />
-                </div>
-                
-                <div>
-                    <h1 className="text-4xl font-bold mb-4">
-                        {product.name}
-                    </h1>
-                    <p className="text-2xl font-semibold mb-6">
-                        {(product.price_cents / 100)
-                            .toFixed(2)
-                            .replace(".", ",")} €
-                    </p>
-                    <p className="text-white leading-relaxed mb-6">
-                        {product.description}
-                    </p>
-                    <AddToCartButton productId={product.id} />
+                <div className="grid grid-cols-2 gap-8">
+                    <div>
+                        <img
+                            src={product.image_url ?? undefined}
+                            alt={product.name}
+                            className="w-full rounded-lg"
+                        />
+                    </div>
+
+                    <div>
+                        <h1 className="text-4xl font-bold mb-4">
+                            {product.name}
+                        </h1>
+                        <p className="text-2xl font-semibold mb-6">
+                            {(product.price_cents / 100)
+                                .toFixed(2)
+                                .replace(".", ",")} €
+                        </p>
+                        <p className="text-white leading-relaxed mb-6">
+                            {product.description}
+                        </p>
+                        <AddToCartButton productId={product.id} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

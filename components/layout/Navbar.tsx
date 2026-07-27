@@ -5,6 +5,7 @@ import shopping_cart_logo from "../../public/images/navbar/shopping_cart.png"
 import user_logo from "../../public/images/navbar/user.png"
 import Image from "next/image"
 import { NavbarCenter } from "./NavbarCenter"
+import {ProfileCard} from "@/components/profile_card/ProfileCard";
 
 export async function Navbar() {
 
@@ -39,15 +40,19 @@ export async function Navbar() {
                     />
                 </Link>
 
-                <Link href="/login" className="mr-5">
-                    <Image
-                        src={user_logo}
-                        alt="Profil"
-                        width={30}
-                        height={30}
-                        className="scale-125 hover:scale-150 transition"
-                    />
-                </Link>
+                {user ? (
+                    <ProfileCard></ProfileCard>
+                ) : (
+                    <Link href="/login" className="mr-5">
+                        <Image
+                            src={user_logo}
+                            alt="Profil"
+                            width={30}
+                            height={30}
+                            className="scale-125 hover:scale-150 transition"
+                        />
+                    </Link>
+                )}
             </div>
         </nav>
     )

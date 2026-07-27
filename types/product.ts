@@ -5,7 +5,8 @@ export interface Product {
     name: string;
     description: string;
     price_cents: number;
-    image_url: string | null;
+    image_url: string;
+    hero_image_url: string;
     created_at: string;
     categories: Category[];
     platform: {
