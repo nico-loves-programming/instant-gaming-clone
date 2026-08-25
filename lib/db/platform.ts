@@ -1,4 +1,4 @@
-﻿import {createClient} from "@/lib/db/client";
+﻿import {createClient} from "@/lib/db/server";
 
 export async function getProductsByPlatform(slug: string) {
 

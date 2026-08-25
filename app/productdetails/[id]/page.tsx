@@ -5,8 +5,6 @@ import { Navbar } from "@/components/layout/Navbar"
 import { TrackProductView } from "@/components/products/TrackProductView"
 import Image from "next/image"
 import { Heart } from "lucide-react"
-import shopping_cart_logo from "../../../public/images/navbar/shopping_cart.png"
-
 
 interface ProductDetailsProps {
     params: Promise<{ id: string }>
@@ -19,8 +17,6 @@ export default async function ProductDetails({ params }: ProductDetailsProps) {
     if (!product) {
         notFound()
     }
-    
-    console.log(product.description)
 
     const priceEuro = (product.price_cents / 100).toFixed(2).replace(".", ",")
 
@@ -69,18 +65,18 @@ export default async function ProductDetails({ params }: ProductDetailsProps) {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="flex flex-row">
                         <div>
                             <p className="text-3xl font-bold mt-10">Über das Produkt</p>
-                            <p className="mt-10 w-130">{product.description}</p>
+                            <p className="mt-10 w-96">{product.description}</p>
                         </div>
                         <div>
-                            
+
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </>
     )

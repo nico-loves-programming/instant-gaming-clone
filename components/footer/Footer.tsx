@@ -17,14 +17,12 @@ const iconLinks = [
 ]
 
 const socials = [
-    { icon: MessageCircle, bg: "bg-indigo-500" },
     { icon: FaDiscord, bg: "bg-indigo-500" },
     { icon: FaXTwitter, bg: "bg-black" },
     { icon: FaInstagram, bg: "bg-pink-700" },
     { icon: FaFacebook, bg: "bg-blue-600" },
     { icon: FaYoutube, bg: "bg-red-600" },
     { icon: FaTwitch, bg: "bg-purple-600" },
-    { icon: Radio, bg: "bg-purple-600" },
 ]
 
 export function Footer() {
