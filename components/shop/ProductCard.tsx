@@ -5,13 +5,15 @@ import { Product } from "@/types/product";
 import { Card } from "@/components/ui/Card";
 import { addProductToCart } from "@/actions/card";
 import { useRouter } from "next/navigation"
+import {getReleaseText} from "@/lib/utils/date";
 
 
 interface ProductCardProps {
     product: Product
+    showPreorderInfo?: boolean
 }
 
-export function ProductCard({product}: ProductCardProps) {
+export function ProductCard({product, showPreorderInfo = false}: ProductCardProps) {
     const [isPending, startTransition] = useTransition()
     const [added, setAdded] = useState(false)
     const router = useRouter()
@@ -37,10 +39,17 @@ export function ProductCard({product}: ProductCardProps) {
                     className="w-full object-cover transition-transform duration-300 hover:scale-105"
                     onClick={() => router.push(`/productdetails/${product.id}`)}
                 />
-                <div className="flex justify-between pt-4 pb-5 text-l text-white">
+                <div className="flex justify-between pt-4 pb-2 text-l text-white">
                     {product.name}
                     <p>{(product.price_cents / 100).toFixed(2).replace('.',',')} €</p>
                 </div>
+
+                {showPreorderInfo && (
+                    <div className="flex flex-row text-sm text-blue-400">
+                        <p className="border-1">VORBESTELLUNG</p>
+                        <p className="pl-5">{getReleaseText(product.release_date)}</p>
+                    </div>
+                )}
             </div>
         </Card>
     )

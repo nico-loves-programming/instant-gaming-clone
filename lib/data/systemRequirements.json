@@ -1,0 +1,18 @@
+{
+  "minimum": {
+    "os": "Windows 10 64-bit",
+    "processor": "Intel Core i5-8400 / AMD Ryzen 5 2600",
+    "memory": "8 GB RAM",
+    "graphics": "NVIDIA GTX 1060 6GB / AMD RX 580 8GB",
+    "storage": "50 GB available space",
+    "directX": "Version 12"
+  },
+  "recommended": {
+    "os": "Windows 10/11 64-bit",
+    "processor": "Intel Core i7-9700 / AMD Ryzen 7 3700X",
+    "memory": "16 GB RAM",
+    "graphics": "NVIDIA RTX 2070 / AMD RX 5700 XT",
+    "storage": "50 GB available space",
+    "directX": "Version 12"
+  }
+}

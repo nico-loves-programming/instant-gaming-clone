@@ -1,5 +1,5 @@
 ﻿import Link from "next/link"
-import { PreOrderProductCard } from "@/components/preoder_product_card/PreOrderProductCard"
+import {ProductCard} from "@/components/shop/ProductCard";
 import type { Product } from "@/types/product"
 import { ChevronRight } from "lucide-react";
 
@@ -17,7 +17,7 @@ export function PreOrderGames({ products }: PreOrderGamesProps) {
 
             <div className="grid grid-cols-3 gap-6">
                 {products.map((product) => (
-                    <PreOrderProductCard key={product.id} product={product} />
+                    <ProductCard key={product.id} product={product} showPreorderInfo/>
                 ))}
             </div>
         </div>

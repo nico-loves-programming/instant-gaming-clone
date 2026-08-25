@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar"
 import { TrackProductView } from "@/components/products/TrackProductView"
 import Image from "next/image"
 import { Heart } from "lucide-react"
+import systemRequirements from "@/lib/data/systemRequirements.json"
 
 interface ProductDetailsProps {
     params: Promise<{ id: string }>
@@ -69,10 +70,31 @@ export default async function ProductDetails({ params }: ProductDetailsProps) {
                     <div className="flex flex-row">
                         <div>
                             <p className="text-3xl font-bold mt-10">Über das Produkt</p>
-                            <p className="mt-10 w-96">{product.description}</p>
+                            <p className="mt-2 w-96">{product.description}</p>
                         </div>
-                        <div>
-
+                        <div className="ms-35">
+                            <div>
+                                <p className="text-3xl font-bold mt-10 w-150">Minimale Systemanforderungen</p>
+                                <div className="mt-2">
+                                    <p>Betriebssystem: {systemRequirements.minimum.os}</p>
+                                    <p>Prozessor: {systemRequirements.minimum.processor}</p>
+                                    <p>Arbeitsspeicher: {systemRequirements.minimum.memory}</p>
+                                    <p>Grafikkarte: {systemRequirements.minimum.graphics}</p>
+                                    <p>Speicherplatz: {systemRequirements.minimum.storage}</p>
+                                    <p>DirectX: {systemRequirements.minimum.directX}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <p className="text-3xl font-bold mt-10">Empfohlene Systemanforderungen</p>
+                                <div className="mt-2">
+                                    <p>Betriebssystem: {systemRequirements.recommended.os}</p>
+                                    <p>Prozessor: {systemRequirements.recommended.processor}</p>
+                                    <p>Arbeitsspeicher: {systemRequirements.recommended.memory}</p>
+                                    <p>Grafikkarte: {systemRequirements.recommended.graphics}</p>
+                                    <p>Speicherplatz: {systemRequirements.recommended.storage}</p>
+                                    <p>DirectX: {systemRequirements.recommended.directX}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
