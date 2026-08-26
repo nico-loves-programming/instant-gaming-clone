@@ -36,16 +36,6 @@ export default function LoginPage() {
 
     return (
         <div className="relative flex min-h-screen">
-            <Link href="/" className="absolute top-6 left-6 z-10">
-                <Image
-                    src={logo}
-                    alt="Logo"
-                    width={220}
-                    height={90}
-                    className="pl-5 pt-2"
-                />
-            </Link>
-
             <div className="w-full lg:w-1/2 bg-neutral-800 flex flex-col justify-center px-16">
                 <h1 className="text-white text-2xl font-semibold mb-6">Login</h1>
 

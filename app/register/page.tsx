@@ -26,7 +26,7 @@ export default function RegisterPage() {
     const [success, setSuccess] = useState(false)
 
     const isValid = email && password.length >= 8 && firstName && lastName && birthDate && acceptedTerms
-    
+
     const router = useRouter()
 
     async function handleRegister(e: React.FormEvent) {
@@ -84,16 +84,6 @@ export default function RegisterPage() {
 
     return (
         <div className="relative flex min-h-screen">
-            <Link href="/" className="absolute top-6 left-6 z-10">
-                <Image
-                    src={logo}
-                    alt="Logo"
-                    width={220}
-                    height={90}
-                    className="pl-5 pt-2"
-                />
-            </Link>
-
             <div className="w-full lg:w-1/2 bg-neutral-800 flex flex-col justify-center px-16 py-12">
                 {success ? (
                     <p className="text-white">Registrierung erfolgreich! Bitte bestätige deine E-Mail-Adresse.</p>

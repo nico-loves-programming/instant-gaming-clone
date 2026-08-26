@@ -25,13 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-    <body className="">
-    {children}
-    </body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+        <body className="">
+        <Navbar></Navbar>
+        {children}
+        <Footer></Footer>
+        </body>
     </html>
   );
 }

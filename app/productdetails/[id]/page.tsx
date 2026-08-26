@@ -1,7 +1,6 @@
 ﻿import { getProductById } from "@/lib/db/products"
 import { notFound } from "next/navigation"
 import { AddToCartButton } from "@/components/cart/AddToCartButton"
-import { Navbar } from "@/components/layout/Navbar"
 import { TrackProductView } from "@/components/products/TrackProductView"
 import Image from "next/image"
 import { Heart } from "lucide-react"
@@ -23,11 +22,9 @@ export default async function ProductDetails({ params }: ProductDetailsProps) {
 
     return (
         <>
-            <Navbar />
-
             <TrackProductView productId={product.id} />
 
-            <div className="relative w-full h-[800px] bg-neutral-950">
+            <div className="relative w-full h-[800px] bg-neutral-950 mb-70">
                 <div className="absolute inset-0 h-[600px] [clip-path:polygon(0_0,100%_0,100%_100%,0_85%)]">
                     <Image
                         src={product.hero_image_url ?? product.image_url}

@@ -16,7 +16,7 @@ import {Footer} from "@/components/footer/Footer";
 import {getRecentlyViewed} from "@/lib/db/recentlyViewed";
 
 export default async function Home() {
-    
+
     const products = await getProducts()
     const categories = await getCategories()
     const randomProduct = products[Math.floor(Math.random() * products.length)]
@@ -27,7 +27,6 @@ export default async function Home() {
 
     return (
         <>
-            <Navbar />
             <Hero product={randomProduct}/>
             <TrendingGames products={trendingGamesWithAmount} />
             <TrustBar></TrustBar>
@@ -38,7 +37,6 @@ export default async function Home() {
             <Bestseller products={products.slice(28,37)} />
             <CategoryGrid categories={categoriesWithImage} />
             <FAQ></FAQ>
-            <Footer />
         </>
     )
 }

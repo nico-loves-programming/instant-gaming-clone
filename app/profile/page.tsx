@@ -1,5 +1,4 @@
-﻿import {Navbar} from "@/components/layout/Navbar";
-import Image from "next/image";
+﻿import Image from "next/image";
 import user from "../../public/images/navbar/user.png"
 import {getProfileInfo} from "@/lib/db/profile";
 
@@ -8,8 +7,7 @@ export default async function Profile() {
 
     return(
         <>
-            <Navbar/>
-            <div className="flex justify-center items-center pt-30">
+            <div className="flex justify-center items-center pt-30 mb-10">
                 <div>
                     <Image
                         src={user}

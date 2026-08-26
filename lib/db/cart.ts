@@ -9,7 +9,7 @@ export async function getCart() {
             user
         }
     } = await supabase.auth.getUser()
-    
+
     if (!user) {
         return null
     }
@@ -35,6 +35,25 @@ export async function getCart() {
     return cart
 }
 
+export async function getCartItemCount() {
+    const supabase = await createClient()
+
+    const cart = await getCart()
+
+    if(!cart){
+        throw new Error("Kein Warenkorb")
+    }
+
+    const { data, error } = await supabase
+        .from("cart_item")
+        .select("quantity")
+        .eq("cart_id", cart.id)
+
+    if(error) throw error
+
+    return data.reduce((total, item) => total + item.quantity,0)
+}
+
 export async function addToCart(productId:string){
 
     const supabase = await createClient()
@@ -44,7 +63,7 @@ export async function addToCart(productId:string){
     if(!cart){
         throw new Error("Kein Warenkorb")
     }
-    
+
     const {
         data: existing
     } = await supabase
@@ -53,7 +72,7 @@ export async function addToCart(productId:string){
         .eq("cart_id", cart.id)
         .eq("product_id", productId)
         .single()
-    
+
     if(existing){
         await supabase
             .from("cart_item")
@@ -82,37 +101,24 @@ export async function removeFromCart(productId: string) {
         throw new Error("Kein Warenkorb gefunden")
     }
 
-    const { data: existing, error } = await supabase
+    const { data: existing, error: fetchError } = await supabase
         .from("cart_item")
         .select("*")
         .eq("cart_id", cart.id)
         .eq("product_id", productId)
         .single()
 
-    if (error || !existing) {
+    if (fetchError || !existing) {
         throw new Error("Produkt befindet sich nicht im Warenkorb")
     }
 
-    if (existing.quantity > 1) {
-        const { error } = await supabase
-            .from("cart_item")
-            .update({
-                quantity: existing.quantity - 1
-            })
-            .eq("id", existing.id)
+    const { error } = await supabase
+        .from("cart_item")
+        .delete()
+        .eq("id", existing.id)
 
-        if (error) {
-            throw error
-        }
-    } else {
-        const { error } = await supabase
-            .from("cart_item")
-            .delete()
-            .eq("id", existing.id)
-
-        if (error) {
-            throw error
-        }
+    if (error) {
+        throw error
     }
 }
 
@@ -136,7 +142,7 @@ export async function getCartItems(){
         .order("created_at", {ascending: true})
 
     if(error) throw error
-    
+
     return data
 }
 
