@@ -1,11 +1,14 @@
-﻿import Image from "next/image";
+﻿import Image from "next/image"
 import user from "../../public/images/navbar/user.png"
-import {getProfileInfo} from "@/lib/db/profile";
+import { getProfileInfo } from "@/lib/db/profile"
+import { Wishlist } from "@/components/wishlist/Wishlist"
+import { Orders } from "@/components/orders/Orders"
+import { ProfileTabs } from "@/components/profile_card/ProfileTabs"
 
 export default async function Profile() {
-    const profile = await getProfileInfo();
+    const profile = await getProfileInfo()
 
-    return(
+    return (
         <>
             <div className="flex justify-center items-center pt-30 mb-10">
                 <div>
@@ -17,11 +20,23 @@ export default async function Profile() {
                         className="mx-auto"
                     />
                     <div className="text-center pt-5">
-                        <p className="text-4xl font-bold">{profile?.username ?? "Unbekannter User"}</p>
-                        <p>Registriert seit: {" "} {profile?.created_at ? new Date(profile.created_at).toLocaleDateString("de-DE") : "Unbekannt"} </p>
+                        <p className="text-4xl font-bold">
+                            {profile?.username ?? "Unbekannter User"}
+                        </p>
+                        <p>
+                            Registriert seit:{" "}
+                            {profile?.created_at
+                                ? new Date(profile.created_at).toLocaleDateString("de-DE")
+                                : "Unbekannt"}
+                        </p>
                     </div>
                 </div>
             </div>
+
+            <ProfileTabs
+                ordersSlot={<Orders />}
+                wishlistSlot={<Wishlist />}
+            />
         </>
     )
 }

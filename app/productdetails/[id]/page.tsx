@@ -2,6 +2,8 @@
 import { notFound } from "next/navigation"
 import { AddToCartButton } from "@/components/cart/AddToCartButton"
 import { TrackProductView } from "@/components/products/TrackProductView"
+import {isInWishlist} from "@/lib/db/wishlist";
+import {WishlistButton} from "@/components/wishlist/WishlistButton";
 import Image from "next/image"
 import { Heart } from "lucide-react"
 import systemRequirements from "@/lib/data/systemRequirements.json"
@@ -13,6 +15,7 @@ interface ProductDetailsProps {
 export default async function ProductDetails({ params }: ProductDetailsProps) {
     const { id } = await params
     const product = await getProductById(id)
+    const alreadyInWishlist = await isInWishlist(product.id)
 
     if (!product) {
         notFound()
@@ -56,9 +59,7 @@ export default async function ProductDetails({ params }: ProductDetailsProps) {
                             </p>
 
                             <div className="flex gap-3">
-                                <button className="w-18 h-14 flex mt-1 items-center justify-center border-2 border-green-400 rounded-lg text-green-400 hover:bg-green-500/10 transition">
-                                    <Heart size={22} />
-                                </button>
+                                <WishlistButton productId={product.id} initialIsInWishlist={alreadyInWishlist} />
                                 <AddToCartButton productId={product.id} />
                             </div>
                         </div>
